@@ -260,15 +260,31 @@ async def orchestrate(
     if content_format in ("contest", "conference"):
         normalize_mode = content_format
 
-    if normalize_mode and extracted_items:
+    # Check if we should normalize inline (for contest/conference format)
+    normalize_inline = normalize_mode and extracted_items
+
+    if normalize_inline:
         await cb(f"Normalizing to {normalize_mode} schema (Step D)...")
-        extracted_items = await normalize(
-            items=extracted_items,
-            mode=normalize_mode,
-            source_url=url,
-            cost_tracker=cost_tracker,
-            html_by_url=html_by_url,
-        )
+        normalized_items = []
+
+        # Normalize each item immediately after extraction
+        for idx, item in enumerate(extracted_items):
+            item_url = item.get("source_url", url)
+            html_content = html_by_url.get(item_url, "") if html_by_url else ""
+
+            normalized = await normalize(
+                items=[item],
+                mode=normalize_mode,
+                source_url=item_url,
+                cost_tracker=cost_tracker,
+                html_by_url={item_url: html_content} if html_content else None,
+            )
+            if normalized:
+                normalized_items.extend(normalized)
+
+            await cb(f"Normalized {idx + 1}/{len(extracted_items)}: {item_url}")
+
+        extracted_items = normalized_items
         await cb(
             f"Normalized {len(extracted_items)} item(s) to {normalize_mode} schema"
         )
