@@ -56,6 +56,7 @@ async def orchestrate(
     pages_visited: list[str] = []
     pages_failed: list[dict] = []
     extracted_items: list[dict] = []
+    html_by_url: dict[str, str] = {}  # Store HTML for normalization
 
     # Batch output tracking
     batch_count = 0
@@ -103,6 +104,9 @@ async def orchestrate(
     images_start = extract_images(raw_html, base_url=url)
     images_start = resolve_all(images_start, url)
     clean = clean_html(raw_html, max_chars=MAX_HTML_CHARS)
+
+    # Store HTML for normalization
+    html_by_url[url] = raw_html
 
     # ── 4. Step A: Analyze ────────────────────────────────────────────────────
     await cb("Analyzing page structure (Step A)...")
@@ -188,6 +192,9 @@ async def orchestrate(
                     await expand_hidden_content(detail_page)
                     raw_detail = await detail_page.content()
                     pages_visited.append(target_url)
+
+                    # Store raw HTML for normalization phase
+                    html_by_url[target_url] = raw_detail
                 except Exception as e:
                     logger.warning(f"Failed to fetch {target_url}: {e}")
                     pages_failed.append({"url": target_url, "error": str(e)})
@@ -260,6 +267,7 @@ async def orchestrate(
             mode=normalize_mode,
             source_url=url,
             cost_tracker=cost_tracker,
+            html_by_url=html_by_url,
         )
         await cb(
             f"Normalized {len(extracted_items)} item(s) to {normalize_mode} schema"

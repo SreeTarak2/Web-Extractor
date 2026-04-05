@@ -29,10 +29,18 @@ async def normalize(
     mode: str,  # "contest" | "conference"
     source_url: str,
     cost_tracker: CostTracker,
+    html_by_url: dict | None = None,
 ) -> list[dict]:
     """
     Run each scraped item through the normalization prompt.
     Returns a list of normalized DB-ready dicts (one per item).
+
+    Args:
+        items: List of extracted items
+        mode: "contest" or "conference"
+        source_url: Base URL for the scrape
+        cost_tracker: Cost tracker instance
+        html_by_url: Optional dict mapping URL -> raw HTML for re-extraction
     """
     system_prompt = _SYSTEM_MAP.get(mode)
     if not system_prompt:
@@ -44,10 +52,30 @@ async def normalize(
     results = []
 
     for i, item in enumerate(items):
-        user_message = (
-            f"Source URL: {source_url}\n\n"
-            f"Raw scraped data:\n{json.dumps(item, indent=2, ensure_ascii=False)}"
-        )
+        item_url = item.get("source_url", source_url)
+        html_content = ""
+
+        if html_by_url and item_url in html_by_url:
+            html_content = html_by_url[item_url]
+
+        user_message_parts = [
+            f"Source URL: {item_url}",
+            "",
+            f"Raw scraped data:\n{json.dumps(item, indent=2, ensure_ascii=False)}",
+        ]
+
+        if html_content:
+            user_message_parts.extend(
+                [
+                    "",
+                    "==============================================",
+                    "WEBPAGE HTML CONTENT (use for extracting missing data):",
+                    "==============================================",
+                    html_content[:80000],  # Limit HTML size
+                ]
+            )
+
+        user_message = "\n".join(user_message_parts)
 
         async def _call(msg=user_message):
             return await client.chat.completions.create(
@@ -58,7 +86,7 @@ async def normalize(
                 ],
                 response_format={"type": "json_object"},
                 temperature=0.0,
-                max_tokens=2000,
+                max_tokens=2500,
             )
 
         try:
