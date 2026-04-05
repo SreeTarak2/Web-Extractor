@@ -328,6 +328,21 @@ IMAGE RULES
 - No AI image generation
 - No guessing
 
+BANNER VS LOGO FALLBACK:
+1. FIRST: Look for banner/hero image (main contest image)
+2. SECOND: If no banner, use organization logo
+3. THIRD: If neither exist → set image fields to empty, NOT fabricate
+
+Use alt text from HTML when available:
+- Check og:image:alt meta tag
+- Check <img alt="..."> attributes
+- Put alt text in image.alt field
+
+IF NO IMAGE AVAILABLE:
+- Set image.primary.url = ""
+- Set image.primary.status = "not_found"
+- Do NOT set a placeholder or fake URL
+
 ==================================================
 DEADLINE EXTRACTION (ANTI-CONFUSION RULE)
 ==================================================
