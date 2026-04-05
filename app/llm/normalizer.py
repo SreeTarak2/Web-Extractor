@@ -86,22 +86,31 @@ async def normalize(
                 model=MODEL_GENERATOR,
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": msg},
+                    {
+                        "role": "user",
+                        "content": msg
+                        + "\n\nIMPORTANT: Return ONLY valid JSON, no other text.",
+                    },
                 ],
-                response_format={"type": "json_object"},
                 temperature=0.0,
                 max_tokens=2500,
             )
 
+        response = None
         try:
             async with llm_semaphore:
                 response = await call_with_retry(_call)
             cost_tracker.log(MODEL_GENERATOR, response)
-            normalized = json.loads(response.choices[0].message.content)
+            content = response.choices[0].message.content
+            normalized = json.loads(content)
             logger.info(f"Normalized item {idx + 1}/{len(items)} ({mode})")
             return normalized
         except json.JSONDecodeError as e:
             logger.error(f"Normalizer returned invalid JSON for item {idx + 1}: {e}")
+            if response:
+                logger.error(
+                    f"Response content was: {response.choices[0].message.content}"
+                )
             return {"_normalize_error": str(e), "_raw": item}
         except Exception as e:
             logger.error(f"Normalizer failed for item {idx + 1}: {e}")
