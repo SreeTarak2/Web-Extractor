@@ -6,6 +6,8 @@ Modes:
   "conference" → ConferencesPrompt.txt schema (v2.0)
 """
 
+import os
+import asyncio
 import json
 import logging
 
@@ -22,6 +24,8 @@ _SYSTEM_MAP = {
     "contest": NORMALIZER_CONTEST_SYSTEM,
     "conference": NORMALIZER_CONFERENCE_SYSTEM,
 }
+
+NORMALIZE_BATCH_SIZE = int(os.getenv("NORMALIZE_BATCH_SIZE", "3"))
 
 
 async def normalize(
@@ -51,7 +55,7 @@ async def normalize(
     client = get_client()
     results = []
 
-    for i, item in enumerate(items):
+    async def normalize_single(item: dict, idx: int) -> dict:
         item_url = item.get("source_url", source_url)
         html_content = ""
 
@@ -71,7 +75,7 @@ async def normalize(
                     "==============================================",
                     "WEBPAGE HTML CONTENT (use for extracting missing data):",
                     "==============================================",
-                    html_content[:80000],  # Limit HTML size
+                    html_content[:80000],
                 ]
             )
 
@@ -94,13 +98,23 @@ async def normalize(
                 response = await call_with_retry(_call)
             cost_tracker.log(MODEL_GENERATOR, response)
             normalized = json.loads(response.choices[0].message.content)
-            results.append(normalized)
-            logger.info(f"Normalized item {i + 1}/{len(items)} ({mode})")
+            logger.info(f"Normalized item {idx + 1}/{len(items)} ({mode})")
+            return normalized
         except json.JSONDecodeError as e:
-            logger.error(f"Normalizer returned invalid JSON for item {i + 1}: {e}")
-            results.append({"_normalize_error": str(e), "_raw": item})
+            logger.error(f"Normalizer returned invalid JSON for item {idx + 1}: {e}")
+            return {"_normalize_error": str(e), "_raw": item}
         except Exception as e:
-            logger.error(f"Normalizer failed for item {i + 1}: {e}")
-            results.append({"_normalize_error": str(e), "_raw": item})
+            logger.error(f"Normalizer failed for item {idx + 1}: {e}")
+            return {"_normalize_error": str(e), "_raw": item}
+
+    for i in range(0, len(items), NORMALIZE_BATCH_SIZE):
+        batch = items[i : i + NORMALIZE_BATCH_SIZE]
+        batch_results = await asyncio.gather(
+            *[normalize_single(item, i + j) for j, item in enumerate(batch)]
+        )
+        results.extend(batch_results)
+
+        if i + NORMALIZE_BATCH_SIZE < len(items):
+            await asyncio.sleep(0.5)
 
     return results

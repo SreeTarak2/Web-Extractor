@@ -12,19 +12,15 @@ if not OPENROUTER_API_KEY:
 
 OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 
-# Models (OpenRouter slugs)
-MODEL_NAVIGATOR = os.getenv(
-    "MODEL_NAVIGATOR", "mistralai/mistral-small-3.1-24b-instruct"
-)
-MODEL_EXTRACTOR = os.getenv(
-    "MODEL_EXTRACTOR", "mistralai/mistral-small-3.1-24b-instruct"
-)
-MODEL_GENERATOR = os.getenv("MODEL_GENERATOR", "mistralai/mistral-medium-3")
+# Models (OpenRouter slugs) - Best + Cost Effective
+MODEL_NAVIGATOR = os.getenv("MODEL_NAVIGATOR", "qwen/qwen3-8b")
+MODEL_EXTRACTOR = os.getenv("MODEL_EXTRACTOR", "qwen/qwen3-8b")
+MODEL_GENERATOR = os.getenv("MODEL_GENERATOR", "qwen/qwen3-14b")
 
 # Model pricing (per 1M tokens)
 MODEL_PRICING = {
-    "mistralai/mistral-small-3.1-24b-instruct": {"input": 0.35, "output": 0.56},
-    "mistralai/mistral-medium-3": {"input": 0.40, "output": 2.00},
+    "qwen/qwen3-8b": {"input": 0.05, "output": 0.15},
+    "qwen/qwen3-14b": {"input": 0.06, "output": 0.15},
 }
 
 # Browser
