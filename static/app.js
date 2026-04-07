@@ -395,15 +395,67 @@ let currentBatchNum = 1;
 let isBatchActive = false;
 let currentUrl = "";
 let allResults = [];
+let showSearch = false;
+let showThink = false;
 
 // Initialize chat UI
 document.addEventListener("DOMContentLoaded", () => {
-  // Schema selector
-  const schemaSelect = document.getElementById("schema-select");
-  if (schemaSelect) {
-    schemaSelect.addEventListener("change", (e) => {
-      currentSchema = e.target.value;
+  // Schema dropdown toggle
+  const schemaToggle = document.getElementById("schema-toggle");
+  const schemaDropdown = document.getElementById("schema-dropdown");
+  const schemaLabel = document.getElementById("schema-label");
+  
+  if (schemaToggle && schemaDropdown) {
+    schemaToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      schemaDropdown.classList.toggle("hidden");
     });
+    
+    schemaDropdown.querySelectorAll(".dropdown-item").forEach(item => {
+      item.addEventListener("click", () => {
+        currentSchema = item.dataset.value;
+        if (schemaLabel) schemaLabel.textContent = currentSchema.charAt(0).toUpperCase() + currentSchema.slice(1);
+        schemaDropdown.classList.add("hidden");
+      });
+    });
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", () => {
+    if (schemaDropdown && !schemaDropdown.classList.contains("hidden")) {
+      schemaDropdown.classList.add("hidden");
+    }
+  });
+
+  // Search toggle
+  const searchToggle = document.getElementById("search-toggle");
+  if (searchToggle) {
+    searchToggle.addEventListener("click", () => {
+      showSearch = !showSearch;
+      searchToggle.classList.toggle("active", showSearch);
+      if (showSearch) showThink = false;
+      const thinkToggle = document.getElementById("think-toggle");
+      if (thinkToggle) thinkToggle.classList.remove("active");
+    });
+  }
+
+  // Think toggle
+  const thinkToggle = document.getElementById("think-toggle");
+  if (thinkToggle) {
+    thinkToggle.addEventListener("click", () => {
+      showThink = !showThink;
+      thinkToggle.classList.toggle("active", showThink);
+      if (showThink) showSearch = false;
+      const searchToggleEl = document.getElementById("search-toggle");
+      if (searchToggleEl) searchToggleEl.classList.remove("active");
+    });
+  }
+
+  // Upload button
+  const uploadBtn = document.getElementById("upload-btn");
+  const jsonUpload = document.getElementById("json-upload");
+  if (uploadBtn && jsonUpload) {
+    uploadBtn.addEventListener("click", () => jsonUpload.click());
   }
 
   // Batch size
@@ -420,16 +472,24 @@ document.addEventListener("DOMContentLoaded", () => {
     sendBtn.addEventListener("click", handleSend);
   }
 
-  // Enter key in input
+  // Enter key in input (shift+enter for newline, enter to send)
   const promptInput = document.getElementById("prompt-input");
   if (promptInput) {
-    promptInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") handleSend();
+    promptInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleSend();
+      }
+    });
+    
+    // Auto-resize textarea
+    promptInput.addEventListener("input", function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 200) + 'px';
     });
   }
 
   // JSON upload
-  const jsonUpload = document.getElementById("json-upload");
   if (jsonUpload) {
     jsonUpload.addEventListener("change", handleJsonUpload);
   }
@@ -440,9 +500,16 @@ async function handleSend() {
   const url = input.value.trim();
   if (!url) return;
 
+  let messagePrefix = "";
+  if (showSearch) messagePrefix = "[Search: ";
+  else if (showThink) messagePrefix = "[Think: ";
+  
+  const displayUrl = messagePrefix ? `${messagePrefix}${url}]` : url;
+
   // Add user message
-  addUserMessage(url);
+  addUserMessage(displayUrl);
   input.value = "";
+  input.style.height = 'auto';
 
   // Start batch processing
   currentUrl = url;
