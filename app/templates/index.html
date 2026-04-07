@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebMind Extractor</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>WebMind Extractor</h1>
+      <p class="subtitle">AI-powered web data extraction</p>
+    </header>
+
+    <!-- Chat Area - Results appear here -->
+    <div id="chat-area" class="chat-area">
+      <div class="chat-empty">Enter a URL below to start scraping...</div>
+    </div>
+
+    <!-- Prompt Box -->
+    <div id="prompt-box" class="prompt-box">
+      <div class="prompt-options">
+        <select id="schema-select">
+          <option value="contest">Contest</option>
+          <option value="conference">Conference</option>
+        </select>
+        <input type="number" id="batch-size" value="5" min="1" max="50" title="Batch size" />
+        <label class="file-upload">
+          <input type="file" id="json-upload" accept=".json" />
+          <span>📎 JSON</span>
+        </label>
+      </div>
+      <div class="prompt-input-row">
+        <input type="text" id="prompt-input" placeholder="Enter URL to scrape..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+    <!-- Legacy sections (hidden for now, can be removed later) -->
+    <section class="card hidden" id="progress-section">
+      <h2>Progress</h2>
+      <div id="progress-bar-wrap">
+        <div id="progress-bar"></div>
+      </div>
+      <ul id="progress-log"></ul>
+    </section>
+
+    <section class="card hidden" id="results-section">
+      <div class="results-header">
+        <h2>Results <span id="item-count"></span></h2>
+      </div>
+      <pre id="results-json"></pre>
+    </section>
+
+    <section class="card hidden" id="cost-section">
+      <h2>Cost</h2>
+      <div id="cost-breakdown"></div>
+    </section>
+  </div>
+
+  <script src="/static/app.js?v=3"></script>
+</body>
+</html>
