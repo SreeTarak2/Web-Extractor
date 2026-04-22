@@ -20,6 +20,7 @@ from app.llm.navigator import plan_navigation
 from app.llm.extractor import extract_data
 from app.llm.generator import generate_content
 from app.llm.normalizer import normalize
+from app.llm.enricher import enrich, detect_null_fields
 from app.tracking.cost_tracker import CostTracker
 from app.config import (
     MAX_PAGES_PER_SCRAPE,
@@ -386,6 +387,26 @@ async def orchestrate(
         await cb(
             f"Normalized {len(extracted_items)} item(s) to {normalize_mode} schema"
         )
+
+        # ── Step E: Enrich null fields via Lightpanda ─────────────────────
+        await cb("Enriching null fields via Lightpanda (Step E)...")
+        enriched_items = []
+        for idx, norm_item in enumerate(extracted_items):
+            if detect_null_fields(norm_item):
+                await cb(
+                    f"Enriching {idx + 1}/{len(extracted_items)}: "
+                    f"{norm_item.get('title', norm_item.get('link', ''))}"
+                )
+                norm_item = await enrich(
+                    norm_item,
+                    browser_manager=browser_manager,
+                    cost_tracker=cost_tracker,
+                    progress_callback=cb,
+                )
+            enriched_items.append(norm_item)
+        extracted_items = enriched_items
+        await cb(f"Enrichment complete for {len(extracted_items)} item(s)")
+
     elif content_format and extracted_items:
         await cb(f"Generating {content_format} content (Step D)...")
         generated_content = await generate_content(
