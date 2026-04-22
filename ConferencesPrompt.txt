@@ -200,18 +200,25 @@ featured.priority:
 - Default: 0
 
 ==================================================
-IMAGE RULES
+IMAGE RULES (PRE-EXTRACTED — DO NOT SEARCH HTML)
 ==================================================
-image.url:
-- Direct URL to conference banner/logo image
-- Must be a valid publicly accessible URL
-- Prefer official conference images
-- Leave empty "" if no image found
-- NO AI-generated images
+The pipeline has already extracted image URLs before calling you.
+They are provided at the top of the user message as:
+  banner_url  — the best banner/hero/content image found on the page
+  logo_url    — the organization logo (fallback only)
+  image_alt   — the alt text for the banner image
 
-image.alt:
-- Descriptive alt text for accessibility
-- e.g., "MWC Barcelona 2026 - The IQ Era"
+MANDATORY IMAGE ASSIGNMENT:
+1. If banner_url is non-empty → use it as image.url
+2. If banner_url is empty AND logo_url is non-empty → use logo_url as image.url
+3. If both are empty → set image.url = ""
+
+For image.alt:
+- If image_alt is non-empty → use it
+- If empty but conference name is known → use conference name + year
+- Otherwise → leave empty ""
+
+NEVER fabricate or guess image URLs.
 
 ==================================================
 DATE EXTRACTION RULES

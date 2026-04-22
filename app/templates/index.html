@@ -11,81 +11,190 @@
 <body>
   <div class="app-container">
     <header>
-      <h1>WebMind Extractor</h1>
-      <p class="subtitle">AI-powered web data extraction</p>
+      <h1>WebMind / Intelligence / Extraction</h1>
+      <p class="subtitle">The Celestial Observer. Extract structured data from the digital void with surgical precision.</p>
     </header>
 
-    <!-- Chat Area -->
-    <div id="chat-area" class="chat-area">
-      <div class="chat-empty">Enter a URL below to start scraping...</div>
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button class="tab-btn active" onclick="switchTab('scrape')">Scrape</button>
+      <button class="tab-btn" onclick="switchTab('upload')">Upload</button>
     </div>
 
-    <!-- Prompt Box - React Style -->
-    <div class="prompt-input-wrapper">
-      <!-- File Previews -->
-      <div id="file-previews" class="file-previews"></div>
-      
-      <!-- Textarea -->
-      <div class="textarea-container">
-        <textarea 
-          id="prompt-input" 
-          placeholder="Type your message here..."
-          rows="1"
-        ></textarea>
+    <!-- ==================== SCRAPE TAB ==================== -->
+    <div id="tab-scrape">
+      <!-- Results Area -->
+      <div id="chat-area" class="chat-area">
+        <div class="chat-empty">Enter a URL below to start scraping...</div>
       </div>
 
-      <!-- Actions Row -->
-      <div class="prompt-actions">
-        <div class="action-buttons-left">
-          <!-- Upload Button -->
-          <button class="action-btn" id="upload-btn" title="Upload image">
-            <i data-lucide="paperclip"></i>
-          </button>
-          <input type="file" id="json-upload" accept=".json" class="hidden" />
-
-          <!-- Schema Selector -->
-          <button class="toggle-btn" id="schema-toggle">
+      <!-- Top Controls -->
+      <div class="top-controls">
+        <!-- Schema Selector -->
+        <div class="schema-wrapper">
+          <button class="top-control-btn schema-toggle" id="schema-toggle">
             <span id="schema-label">Contest</span>
-            <i data-lucide="chevron-down" class="chevron"></i>
+            <i data-lucide="chevron-down" style="width: 14px; height: 14px;"></i>
           </button>
           <div id="schema-dropdown" class="dropdown hidden">
             <div class="dropdown-item" data-value="contest">Contest</div>
             <div class="dropdown-item" data-value="conference">Conference</div>
           </div>
+        </div>
+        <!-- Batch Size -->
+        <div class="batch-input-wrapper top-control-btn">
+          <span class="batch-label">Batches:</span>
+          <input type="number" id="batch-size" value="5" min="1" max="50" style="width: 36px; background: transparent; border: none; color: white; padding: 0; outline: none; margin-left: 4px;" />
+        </div>
+      </div>
 
-          <!-- Batch Size -->
-          <div class="batch-input-wrapper">
-            <span class="batch-label">Batches:</span>
-            <input type="number" id="batch-size" value="5" min="1" max="50" />
+      <!-- Scrape Input -->
+      <div class="input-section">
+        <div class="input-group">
+          <label for="url">URL:</label>
+          <input type="text" id="url" placeholder="https://example.com" />
+        </div>
+        <div class="input-group">
+          <label for="query">Extract:</label>
+          <input type="text" id="query" placeholder="title, price, description" />
+        </div>
+        <div class="input-group">
+          <label for="content-format">Format:</label>
+          <select id="content-format">
+            <option value="">Auto</option>
+            <option value="json">JSON</option>
+            <option value="csv">CSV</option>
+            <option value="markdown">Markdown</option>
+          </select>
+        </div>
+        <button id="preview-btn" onclick="previewUrl()">Detect</button>
+        <button id="scrape-btn" onclick="startScrape()">Scrape</button>
+      </div>
+
+      <!-- Preview Section -->
+      <div id="preview-section" class="hidden">
+        <div id="preview-summary"></div>
+        <div id="field-chips"></div>
+      </div>
+
+      <!-- Progress Section -->
+      <div id="progress-section" class="hidden">
+        <div class="progress-bar"><div id="progress-bar"></div></div>
+        <div id="progress-log"></div>
+      </div>
+
+      <!-- Results Section -->
+      <div id="results-section" class="hidden">
+        <div class="results-header">
+          <h3>Results</h3>
+          <span id="results-header-extra"></span>
+          <div class="results-actions">
+            <button class="results-btn" onclick="copyScrapeResults()" title="Copy to clipboard">
+              <i data-lucide="copy"></i> Copy
+            </button>
+            <button class="results-btn" onclick="downloadScrapeResults('json')" title="Download as JSON">
+              <i data-lucide="download"></i> JSON
+            </button>
+            <button class="results-btn" onclick="downloadScrapeResults('csv')" title="Download as CSV">
+              <i data-lucide="download"></i> CSV
+            </button>
           </div>
+        </div>
+        <pre id="results-json"></pre>
+      </div>
+    </div>
 
-          <!-- Divider -->
-          <div class="custom-divider"></div>
-
-          <!-- Search Toggle -->
-          <button class="toggle-btn search-toggle" id="search-toggle" title="Search">
-            <i data-lucide="globe"></i>
-            <span class="toggle-label">Search</span>
-          </button>
-
-          <!-- Think Toggle -->
-          <button class="toggle-btn think-toggle" id="think-toggle" title="Think">
-            <i data-lucide="brain-circuit"></i>
-            <span class="toggle-label">Think</span>
-          </button>
+    <!-- ==================== UPLOAD TAB ==================== -->
+    <div id="tab-upload" class="hidden">
+      <div class="upload-container">
+        <!-- Info Message -->
+        <div class="info-box">
+          <i data-lucide="info" style="width: 20px; height: 20px;"></i>
+          <div>
+            <strong>💡 How to Extract Images:</strong> Enable <strong>Enrich URLs</strong> to fetch each contest's webpage and automatically extract images, deadlines, and missing details. This improves data quality significantly.
+          </div>
         </div>
 
-        <!-- Send Button -->
-        <button class="send-btn" id="send-btn">
-          <i data-lucide="send"></i>
-        </button>
+        <!-- Drop Zone -->
+        <div id="drop-zone" class="drop-zone">
+          <i data-lucide="cloud-upload" style="width: 48px; height: 48px;"></i>
+          <p>Drag JSON file here or <strong>click to upload</strong></p>
+          <span id="drop-zone-label" class="filename-label"></span>
+          <input type="file" id="json-file" accept=".json" class="hidden" onchange="onFileSelected(this)" />
+        </div>
+
+        <!-- Upload Preview -->
+        <div id="upload-preview" class="hidden upload-preview">
+          <div id="upload-summary"></div>
+          <div id="upload-fields" class="fields-wrap"></div>
+        </div>
+
+        <!-- Upload Controls -->
+        <div class="upload-controls">
+          <div class="control-group">
+            <label for="upload-schema">Schema:</label>
+            <select id="upload-schema">
+              <option value="contest">Contest</option>
+              <option value="conference">Conference</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="upload-batch-size">Batch Size:</label>
+            <input type="number" id="upload-batch-size" value="5" min="1" max="50" style="width: 60px; padding: 0.5rem;" />
+          </div>
+          <div class="control-group checkbox">
+            <input type="checkbox" id="enrich-urls" checked />
+            <label for="enrich-urls">✨ Enrich URLs (re-scrape each item to extract images & fill gaps)</label>
+          </div>
+          <button id="upload-btn" class="btn-primary" onclick="startUpload()" disabled>Upload & Normalize</button>
+        </div>
+
+        <!-- Progress Section -->
+        <div id="upload-progress-section" class="hidden">
+          <div class="progress-bar"><div id="upload-progress-bar"></div></div>
+          <div id="upload-progress-log"></div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="upload-results-section" class="hidden">
+          <div class="results-header">
+            <h3>Normalized Results</h3>
+            <span id="upload-results-header-extra"></span>
+            <div class="results-actions">
+              <button class="results-btn" onclick="copyUploadResults()" title="Copy to clipboard">
+                <i data-lucide="copy"></i> Copy
+              </button>
+              <button class="results-btn" onclick="downloadUploadResults('json')" title="Download as JSON">
+                <i data-lucide="download"></i> JSON
+              </button>
+              <button class="results-btn" onclick="downloadUploadResults('csv')" title="Download as CSV">
+                <i data-lucide="download"></i> CSV
+              </button>
+            </div>
+          </div>
+          <pre id="upload-results-json"></pre>
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="/static/app.js?v=4"></script>
+  <!-- Image View Dialog -->
+  <div id="image-dialog" class="image-dialog hidden">
+    <div class="image-dialog-overlay" id="dialog-overlay"></div>
+    <div class="image-dialog-content pointer-events-none">
+      <img id="image-dialog-img" src="" alt="Preview" class="pointer-events-auto" />
+    </div>
+    <button id="dialog-close" class="dialog-close"><i data-lucide="x"></i></button>
+  </div>
+
+  <script src="/static/app.js?v=10"></script>
   <script>
     lucide.createIcons();
+    // Initialize drop zone
+    const dropZone = document.getElementById("drop-zone");
+    if (dropZone) {
+      dropZone.addEventListener("click", () => document.getElementById("json-file").click());
+    }
   </script>
 </body>
 </html>

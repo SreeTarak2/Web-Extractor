@@ -51,16 +51,31 @@ async def analyze_page(
         response = await call_with_retry(_call)
     cost_tracker.log(MODEL_NAVIGATOR, response)
 
+    content = response.choices[0].message.content or ""
     try:
-        result = json.loads(response.choices[0].message.content)
+        if not content.strip():
+            # Model returned empty — assume all fields may be on the page
+            # so extractor runs directly without unnecessary navigation
+            logger.warning("Analyzer returned empty content; assuming detail page.")
+            result = {
+                "page_type": "detail",
+                "fields_found": requested_fields,
+                "fields_missing": [],
+                "has_detail_links": False,
+                "notes": "Empty response from model; defaulting to direct extraction",
+            }
+        else:
+            result = json.loads(content)
+            if isinstance(result, str):
+                result = json.loads(result)
     except json.JSONDecodeError as e:
         logger.error(f"Analyzer returned invalid JSON: {e}")
         result = {
-            "page_type": "unknown",
-            "fields_found": [],
-            "fields_missing": requested_fields,
+            "page_type": "detail",
+            "fields_found": requested_fields,
+            "fields_missing": [],
             "has_detail_links": False,
-            "notes": "JSON parse error",
+            "notes": "JSON parse error; defaulting to direct extraction",
         }
 
     logger.info(

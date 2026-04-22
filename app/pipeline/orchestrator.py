@@ -11,7 +11,7 @@ from app.browser.manager import BrowserManager
 from app.browser.page_actions import fetch_page, expand_hidden_content, click_load_more
 from app.cache.url_cache import get as cache_get, set as cache_set
 from app.preprocessing.html_cleaner import clean_html
-from app.preprocessing.image_extractor import extract_images
+from app.preprocessing.image_extractor import extract_images_with_metadata
 from app.preprocessing.url_resolver import resolve_all
 from app.pipeline.query_parser import parse_query
 from app.pipeline.result_merger import merge
@@ -43,6 +43,7 @@ async def orchestrate(
     query: str,
     content_format: str | None = None,
     progress_callback: ProgressCallback = None,
+    stop_event: asyncio.Event | None = None,
 ) -> dict:
     """
     Full pipeline: URL + query → structured data (+ optional content).
@@ -52,6 +53,12 @@ async def orchestrate(
     cb = progress_callback or _noop
     cost_tracker = CostTracker()
     start_time = time.time()
+    stopped = False
+
+    async def check_stop() -> bool:
+        if stop_event and stop_event.is_set():
+            return True
+        return False
 
     pages_visited: list[str] = []
     pages_failed: list[dict] = []
@@ -63,11 +70,35 @@ async def orchestrate(
     batch_items = []
 
     # ── 1. Parse query ────────────────────────────────────────────────────────
-    requested_fields = parse_query(query)
+    if await check_stop():
+        await cb("Stopped by user")
+        return _stopped_response(
+            url,
+            query,
+            extracted_items,
+            cost_tracker,
+            start_time,
+            pages_visited,
+            pages_failed,
+        )
+
+    requested_fields = parse_query(query, schema=content_format)
     logger.info(f"Requested fields: {requested_fields}")
     await cb(f"Parsed query → fields: {', '.join(requested_fields)}")
 
     # ── 0. Check cache for URL + fields ────────────────────────────────────────
+    if await check_stop():
+        await cb("Stopped by user")
+        return _stopped_response(
+            url,
+            query,
+            extracted_items,
+            cost_tracker,
+            start_time,
+            pages_visited,
+            pages_failed,
+        )
+
     cache_key_fields = requested_fields
     cached_result = cache_get(url, cache_key_fields)
     if cached_result:
@@ -89,6 +120,18 @@ async def orchestrate(
         }
 
     # ── 2. Fetch listing/start page ───────────────────────────────────────────
+    if await check_stop():
+        await cb("Stopped by user")
+        return _stopped_response(
+            url,
+            query,
+            extracted_items,
+            cost_tracker,
+            start_time,
+            pages_visited,
+            pages_failed,
+        )
+
     await cb(f"Fetching {url} ...")
     page = await browser_manager.new_page()
     try:
@@ -101,8 +144,11 @@ async def orchestrate(
         await page.close()
 
     # ── 3. Preprocess start page ──────────────────────────────────────────────
-    images_start = extract_images(raw_html, base_url=url)
-    images_start = resolve_all(images_start, url)
+    image_meta_start = extract_images_with_metadata(raw_html, base_url=url)
+    # Resolve all URLs in the metadata to absolute
+    image_meta_start["banner"] = resolve_all([image_meta_start["banner"]], url)[0] if image_meta_start["banner"] else ""
+    image_meta_start["logo"] = resolve_all([image_meta_start["logo"]], url)[0] if image_meta_start["logo"] else ""
+    image_meta_start["all"] = resolve_all(image_meta_start["all"], url)
     clean = clean_html(raw_html, max_chars=MAX_HTML_CHARS)
 
     # Store HTML for normalization
@@ -121,7 +167,7 @@ async def orchestrate(
         await cb("All data found on listing page. Extracting...")
         clean_extract = clean_html(raw_html, max_chars=MAX_HTML_CHARS_EXTRACT)
         item = await extract_data(clean_extract, requested_fields, url, cost_tracker)
-        item = merge(item, images_start)
+        item = merge(item, image_meta_start)
         extracted_items.append(item)
         await cb(f"Completed: {url}")
 
@@ -164,13 +210,15 @@ async def orchestrate(
                 raw_html = await page2.content()
             finally:
                 await page2.close()
-            images_start = extract_images(raw_html, base_url=url)
-            images_start = resolve_all(images_start, url)
+            image_meta_start = extract_images_with_metadata(raw_html, base_url=url)
+            image_meta_start["banner"] = resolve_all([image_meta_start["banner"]], url)[0] if image_meta_start["banner"] else ""
+            image_meta_start["logo"] = resolve_all([image_meta_start["logo"]], url)[0] if image_meta_start["logo"] else ""
+            image_meta_start["all"] = resolve_all(image_meta_start["all"], url)
             clean_extract = clean_html(raw_html, max_chars=MAX_HTML_CHARS_EXTRACT)
             item = await extract_data(
                 clean_extract, requested_fields, url, cost_tracker
             )
-            item = merge(item, images_start)
+            item = merge(item, image_meta_start)
             extracted_items.append(item)
             await cb(f"Completed: {url}")
 
@@ -180,6 +228,11 @@ async def orchestrate(
             await cb(f"Scraping {limit} detail pages (Step C)...")
 
             for i, target in enumerate(targets[:limit]):
+                if await check_stop():
+                    await cb("Stopped by user — saving extracted items so far")
+                    stopped = True
+                    break
+
                 target_url = target.get("url", "")
                 if not target_url:
                     continue
@@ -202,13 +255,15 @@ async def orchestrate(
                 finally:
                     await detail_page.close()
 
-                imgs = extract_images(raw_detail, base_url=target_url)
-                imgs = resolve_all(imgs, target_url)
+                img_meta = extract_images_with_metadata(raw_detail, base_url=target_url)
+                img_meta["banner"] = resolve_all([img_meta["banner"]], target_url)[0] if img_meta["banner"] else ""
+                img_meta["logo"] = resolve_all([img_meta["logo"]], target_url)[0] if img_meta["logo"] else ""
+                img_meta["all"] = resolve_all(img_meta["all"], target_url)
                 clean_detail = clean_html(raw_detail, max_chars=MAX_HTML_CHARS_EXTRACT)
                 item = await extract_data(
                     clean_detail, requested_fields, target_url, cost_tracker
                 )
-                item = merge(item, imgs)
+                item = merge(item, img_meta)
                 extracted_items.append(item)
 
                 # Notify completion and batch output
@@ -250,13 +305,56 @@ async def orchestrate(
                     query=query,
                     content_format=None,  # Don't generate content for sub-pages
                     progress_callback=progress_callback,
+                    stop_event=stop_event,
                 )
                 extracted_items.extend(next_result.get("items", []))
                 pages_visited.extend(next_result.get("_pages_visited", []))
 
     # ── 9. Compile results ────────────────────────────────────────────────────
+    if stopped:
+        await cb(f"Stopped. Extracted {len(extracted_items)} items so far")
+        end_time = time.time()
+        cost_summary = cost_tracker.get_cost()
+
+        # Flush remaining batch
+        if batch_items:
+            batch_count += 1
+            batch_file = os.path.join(
+                OUTPUT_DIR, "results", f"batch_{batch_count}.json"
+            )
+            os.makedirs(os.path.dirname(batch_file), exist_ok=True)
+            with open(batch_file, "w") as f:
+                json.dump(
+                    {
+                        "batch": batch_count,
+                        "items": batch_items,
+                        "urls": pages_visited[-len(batch_items) :]
+                        if pages_visited
+                        else [],
+                    },
+                    f,
+                    indent=2,
+                )
+
+        return {
+            "metadata": {
+                "url": url,
+                "query": query,
+                "stopped": True,
+                "requested_fields": requested_fields,
+                "pages_visited": len(pages_visited),
+                "pages_failed": len(pages_failed),
+                "duration_seconds": round(end_time - start_time, 1),
+                "cost_usd": cost_summary["total_usd"],
+            },
+            "items": extracted_items,
+            "generated_content": "",
+            "cost": cost_summary,
+            "_pages_visited": pages_visited,
+        }
+
     generated_content = ""
-    normalize_mode = None
+    normalize_mode: str | None = None
     if content_format in ("contest", "conference"):
         normalize_mode = content_format
 
@@ -274,7 +372,7 @@ async def orchestrate(
 
             normalized = await normalize(
                 items=[item],
-                mode=normalize_mode,
+                mode=normalize_mode,  # type: ignore
                 source_url=item_url,
                 cost_tracker=cost_tracker,
                 html_by_url={item_url: html_content} if html_content else None,
@@ -367,4 +465,30 @@ def _error_response(
         "generated_content": "",
         "cost": cost_tracker.get_cost(),
         "_pages_visited": [],
+    }
+
+
+def _stopped_response(
+    url: str,
+    query: str,
+    extracted_items: list[dict],
+    cost_tracker: CostTracker,
+    start_time: float,
+    pages_visited: list[str],
+    pages_failed: list[dict],
+) -> dict:
+    return {
+        "metadata": {
+            "url": url,
+            "query": query,
+            "stopped": True,
+            "pages_visited": len(pages_visited),
+            "pages_failed": len(pages_failed),
+            "duration_seconds": round(time.time() - start_time, 1),
+            "cost_usd": cost_tracker.get_cost()["total_usd"],
+        },
+        "items": extracted_items,
+        "generated_content": "",
+        "cost": cost_tracker.get_cost(),
+        "_pages_visited": pages_visited,
     }

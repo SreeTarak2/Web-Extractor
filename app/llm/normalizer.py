@@ -62,10 +62,34 @@ async def normalize(
         if html_by_url and item_url in html_by_url:
             html_content = html_by_url[item_url]
 
+        # Pull pre-extracted image data injected by the orchestrator/merger
+        banner_url = item.get("_banner_url", "")
+        logo_url = item.get("_logo_url", "")
+        image_alt = item.get("_image_alt", "")
+
+        # Strip private fields before sending raw data to LLM (cleaner prompt)
+        item_clean = {k: v for k, v in item.items() if not k.startswith("_")}
+
+        # If no pre-extracted banner, try to pull one from legacy image_urls field
+        if not banner_url:
+            image_urls = item.get("image_urls", [])
+            primary = item.get("primary_image", "")
+            if primary:
+                banner_url = primary
+            elif image_urls:
+                banner_url = image_urls[0]
+
         user_message_parts = [
             f"Source URL: {item_url}",
             "",
-            f"Raw scraped data:\n{json.dumps(item, indent=2, ensure_ascii=False)}",
+            "==============================================",
+            "PRE-EXTRACTED IMAGE DATA (use these directly — do NOT hunt for images in HTML):",
+            "==============================================",
+            f"banner_url: {banner_url if banner_url else '(none)'}",
+            f"logo_url:   {logo_url if logo_url else '(none)'}",
+            f"image_alt:  {image_alt if image_alt else '(none)'}",
+            "",
+            f"Raw scraped data:\n{json.dumps(item_clean, indent=2, ensure_ascii=False)}",
         ]
 
         if html_content:
@@ -73,7 +97,7 @@ async def normalize(
                 [
                     "",
                     "==============================================",
-                    "WEBPAGE HTML CONTENT (use for extracting missing data):",
+                    "WEBPAGE HTML CONTENT (use for extracting missing text fields only):",
                     "==============================================",
                     html_content[:80000],
                 ]
@@ -103,6 +127,16 @@ async def normalize(
             cost_tracker.log(MODEL_GENERATOR, response)
             content = response.choices[0].message.content
             normalized = json.loads(content)
+
+            # Log category confidence for observability
+            confidence = normalized.get("_categoryConfidence", "high")
+            suggested = normalized.get("_suggestedCategory")
+            if confidence != "high" or suggested:
+                logger.warning(
+                    f"Item {idx + 1} category confidence={confidence!r}, "
+                    f"suggested={suggested!r}, assigned={normalized.get('category')!r}"
+                )
+
             logger.info(f"Normalized item {idx + 1}/{len(items)} ({mode})")
             return normalized
         except json.JSONDecodeError as e:

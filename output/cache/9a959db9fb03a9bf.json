@@ -1,0 +1,133 @@
+{
+  "url": "https://www.nlapw.org/letters-competition/",
+  "fields": [
+    "image_urls"
+  ],
+  "result": {
+    "items": [
+      {
+        "schemaVersion": "2.0",
+        "externalId": "women",
+        "source": {
+          "name": "National League of American Pen Women, Inc.",
+          "url": "https://www.nlapw.org/letters-competition/",
+          "type": "official"
+        },
+        "category": "Writing",
+        "image": {
+          "primary": {
+            "url": "https://s0.wp.com/i/blank.jpg",
+            "source": "external",
+            "status": "active"
+          },
+          "backup": null,
+          "original": {
+            "url": "https://s0.wp.com/i/blank.jpg",
+            "domain": "s0.wp.com",
+            "lastCheckedAt": null
+          },
+          "alt": "2026 Biennial Letters Competition",
+          "tag": "Writing"
+        },
+        "title": "2026 Biennial Letters Competition",
+        "description": "The National League of American Pen Women invites writers to submit their work for the 2026 Biennial Letters Competition.",
+        "link": "https://www.nlapw.org/letters-competition/",
+        "entry": {
+          "isFree": true,
+          "fee": {
+            "amount": 0,
+            "currency": "N/A"
+          }
+        },
+        "prize": {
+          "isMonetary": null,
+          "amount": 0,
+          "currency": "N/A",
+          "description": "",
+          "evidence": {
+            "monetarySignals": [],
+            "nonMonetarySignals": []
+          }
+        },
+        "audience": {
+          "skillLevels": [
+            "beginner",
+            "intermediate",
+            "advanced"
+          ],
+          "primarySkillLevel": "intermediate",
+          "age": {
+            "min": null,
+            "max": null
+          },
+          "eligibilityLabel": "Women Writers",
+          "eligibilityDetail": "Open to women writers of all levels.",
+          "constraints": {
+            "participantType": [
+              "individuals"
+            ],
+            "academicStatus": null,
+            "graduationAfter": null,
+            "teamSize": {
+              "min": null,
+              "max": null
+            },
+            "organizationFoundedAfter": null
+          },
+          "location": "Worldwide",
+          "mode": "online"
+        },
+        "timeline": {
+          "startDateUTC": null,
+          "submissionDeadlineUTC": null,
+          "endISO": null,
+          "organizerTimeZone": null
+        },
+        "tags": [
+          "writing",
+          "competition",
+          "letters"
+        ],
+        "filterKeys": {
+          "domain": "writing",
+          "format": [
+            "text"
+          ],
+          "medium": [
+            "digital"
+          ],
+          "themes": [
+            "writing"
+          ]
+        },
+        "engagement": null,
+        "lastVerifiedAt": null,
+        "_suggestedCategory": null,
+        "_categoryConfidence": "high"
+      }
+    ],
+    "generated_content": "",
+    "cost": {
+      "breakdown": {
+        "qwen/qwen3-8b": {
+          "calls": 2,
+          "input_tokens": 19519,
+          "output_tokens": 1698,
+          "cost_usd": 0.001231
+        },
+        "qwen/qwen3-14b": {
+          "calls": 1,
+          "input_tokens": 35572,
+          "output_tokens": 614,
+          "cost_usd": 0.002226
+        }
+      },
+      "total_usd": 0.003457
+    },
+    "pages_visited": [
+      "https://www.nlapw.org/letters-competition/"
+    ],
+    "pages_failed": []
+  },
+  "cached_at": "2026-04-12T19:44:16.693919"
+}

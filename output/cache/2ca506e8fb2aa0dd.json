@@ -1,0 +1,139 @@
+{
+  "url": "https://www.nlapw.org/letters-competition/",
+  "fields": [
+    "name",
+    "price",
+    "description",
+    "image_urls"
+  ],
+  "result": {
+    "items": [
+      {
+        "schemaVersion": "2.0",
+        "externalId": null,
+        "source": {
+          "name": "National League of American Pen Women, Inc.",
+          "url": "https://www.nlapw.org/letters-competition/",
+          "type": "official"
+        },
+        "category": "Writing",
+        "image": {
+          "primary": {
+            "url": "https://i0.wp.com/www.nlapw.org/wp-content/uploads/2016/09/Pen-Arts-staircase-IMG_7258.jpg&amp;ssl=1",
+            "source": "external",
+            "status": "active"
+          },
+          "backup": null,
+          "original": {
+            "url": "https://i0.wp.com/www.nlapw.org/wp-content/uploads/2016/09/Pen-Arts-staircase-IMG_7258.jpg&amp;ssl=1",
+            "domain": "i0.wp.com",
+            "lastCheckedAt": null
+          },
+          "alt": "National League of American Pen Women, Inc.",
+          "tag": "Writing"
+        },
+        "title": "2026 Biennial Letters Competition \u2013 National League of American Pen Women, Inc.",
+        "description": "The NLAPW Letters Competition invites members in good standing to submit poetry, prose, and other literary works for evaluation. Entries must be postmarked by December 15.",
+        "link": "https://www.nlapw.org/letters-competition/",
+        "entry": {
+          "isFree": false,
+          "fee": {
+            "amount": 0,
+            "currency": "N/A"
+          }
+        },
+        "prize": {
+          "isMonetary": true,
+          "amount": 0,
+          "currency": "N/A",
+          "description": "Awards include cash prizes for top entries in poetry and nonfiction categories.",
+          "evidence": {
+            "monetarySignals": [
+              "$100",
+              "$75",
+              "$50"
+            ],
+            "nonMonetarySignals": []
+          }
+        },
+        "audience": {
+          "skillLevels": [
+            "intermediate"
+          ],
+          "primarySkillLevel": "intermediate",
+          "age": {
+            "min": null,
+            "max": null
+          },
+          "eligibilityLabel": "NLAPW Members in Good Standing",
+          "eligibilityDetail": "Open to all NLAPW Letters members in good standing.",
+          "constraints": {
+            "participantType": [
+              "individuals"
+            ],
+            "academicStatus": null,
+            "graduationAfter": null,
+            "teamSize": {
+              "min": null,
+              "max": null
+            },
+            "organizationFoundedAfter": null
+          },
+          "location": "Worldwide",
+          "mode": "online"
+        },
+        "timeline": {
+          "startDateUTC": null,
+          "submissionDeadlineUTC": "2026-12-15T23:59:59Z",
+          "endISO": null,
+          "organizerTimeZone": "UTC"
+        },
+        "tags": [
+          "writing",
+          "poetry",
+          "prose",
+          "competition"
+        ],
+        "filterKeys": {
+          "domain": "writing",
+          "format": [
+            "text"
+          ],
+          "medium": [
+            "digital"
+          ],
+          "themes": [
+            "literature"
+          ]
+        },
+        "engagement": null,
+        "lastVerifiedAt": null,
+        "_suggestedCategory": null,
+        "_categoryConfidence": "high"
+      }
+    ],
+    "generated_content": "",
+    "cost": {
+      "breakdown": {
+        "qwen/qwen3-8b": {
+          "calls": 2,
+          "input_tokens": 19566,
+          "output_tokens": 6358,
+          "cost_usd": 0.001932
+        },
+        "qwen/qwen3-14b": {
+          "calls": 1,
+          "input_tokens": 36612,
+          "output_tokens": 1119,
+          "cost_usd": 0.002365
+        }
+      },
+      "total_usd": 0.004297
+    },
+    "pages_visited": [
+      "https://www.nlapw.org/letters-competition/"
+    ],
+    "pages_failed": []
+  },
+  "cached_at": "2026-04-12T21:10:54.674141"
+}

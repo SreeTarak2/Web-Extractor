@@ -1,0 +1,132 @@
+{
+  "url": "https://www.notjustartglobal.org/",
+  "fields": [
+    "title"
+  ],
+  "result": {
+    "items": [
+      {
+        "schemaVersion": "2.0",
+        "externalId": null,
+        "source": {
+          "name": "Not Just Art",
+          "url": "https://www.notjustartglobal.org/",
+          "type": "official"
+        },
+        "category": "Art & Design",
+        "image": {
+          "primary": {
+            "url": "https://images.squarespace-cdn.com/content/v1/5966dcbd6a49633636c3a928/ce6cc430-ef43-489d-8606-cafb32c4a476/Simple+Modern+Minimalist+Circle+Design+Studio+Logo+%281%29.png",
+            "source": "external",
+            "status": "active"
+          },
+          "backup": null,
+          "original": {
+            "url": "https://images.squarespace-cdn.com/content/v1/5966dcbd6a49633636c3a928/ce6cc430-ef43-489d-8606-cafb32c4a476/Simple+Modern+Minimalist+Circle+Design+Studio+Logo+%281%29.png",
+            "domain": "images.squarespace-cdn.com",
+            "lastCheckedAt": null
+          },
+          "alt": "Not Just Art",
+          "tag": "Art & Design"
+        },
+        "title": "Global Ability Photography Challenge 5th Edition is Live - Submit your Photos Now",
+        "description": "A digital platform to promote the works of artists with disabilities to a global audience of art lovers, collectors, museums, and galleries.",
+        "link": "https://tinyurl.com/GAPC26",
+        "entry": {
+          "isFree": true,
+          "fee": {
+            "amount": 0,
+            "currency": "N/A"
+          }
+        },
+        "prize": {
+          "isMonetary": null,
+          "amount": 0,
+          "currency": "N/A",
+          "description": "",
+          "evidence": {
+            "monetarySignals": [],
+            "nonMonetarySignals": []
+          }
+        },
+        "audience": {
+          "skillLevels": [
+            "intermediate"
+          ],
+          "primarySkillLevel": "intermediate",
+          "age": {
+            "min": null,
+            "max": null
+          },
+          "eligibilityLabel": "Artists with disabilities",
+          "eligibilityDetail": "Open to artists with disabilities who wish to showcase their work to a global audience.",
+          "constraints": {
+            "participantType": [
+              "individuals"
+            ],
+            "academicStatus": null,
+            "graduationAfter": null,
+            "teamSize": {
+              "min": null,
+              "max": null
+            },
+            "organizationFoundedAfter": null
+          },
+          "location": "Worldwide",
+          "mode": "online"
+        },
+        "timeline": {
+          "startDateUTC": null,
+          "submissionDeadlineUTC": null,
+          "endISO": null,
+          "organizerTimeZone": "Asia/Calcutta"
+        },
+        "tags": [
+          "art",
+          "disability",
+          "photography",
+          "global"
+        ],
+        "filterKeys": {
+          "domain": "art-design",
+          "format": [
+            "image"
+          ],
+          "medium": [
+            "digital"
+          ],
+          "themes": [
+            "social-impact"
+          ]
+        },
+        "engagement": null,
+        "lastVerifiedAt": null,
+        "_suggestedCategory": null,
+        "_categoryConfidence": "high"
+      }
+    ],
+    "generated_content": "",
+    "cost": {
+      "breakdown": {
+        "qwen/qwen3-8b": {
+          "calls": 2,
+          "input_tokens": 35757,
+          "output_tokens": 1775,
+          "cost_usd": 0.002054
+        },
+        "qwen/qwen3-14b": {
+          "calls": 1,
+          "input_tokens": 24299,
+          "output_tokens": 788,
+          "cost_usd": 0.001576
+        }
+      },
+      "total_usd": 0.00363
+    },
+    "pages_visited": [
+      "https://www.notjustartglobal.org/"
+    ],
+    "pages_failed": []
+  },
+  "cached_at": "2026-04-15T07:02:31.874340"
+}

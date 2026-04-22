@@ -1,0 +1,13 @@
+.env
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+output/results/
+output/content/
+lightpanda
+*.egg-info/
+dist/
+build/
+.DS_Store

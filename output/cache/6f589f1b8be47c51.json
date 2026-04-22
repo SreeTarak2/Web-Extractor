@@ -1,0 +1,122 @@
+{
+  "url": "https://www.womenincleantechsustainability.org/2026-women-led-startups-pitch-competition/",
+  "fields": [
+    "name",
+    "price",
+    "description",
+    "image_urls"
+  ],
+  "result": {
+    "items": [
+      {
+        "schemaVersion": "2.0",
+        "externalId": null,
+        "source": {
+          "name": "womenincleantechsustainability.org",
+          "url": "https://www.womenincleantechsustainability.org/2026-women-led-startups-pitch-competition/",
+          "type": "unknown"
+        },
+        "category": "Open / Multidisciplinary",
+        "image": {
+          "primary": {
+            "url": "",
+            "source": "external",
+            "status": "not_found"
+          },
+          "backup": null,
+          "original": {
+            "url": "",
+            "domain": "",
+            "lastCheckedAt": null
+          },
+          "alt": null,
+          "tag": ""
+        },
+        "title": "",
+        "description": "",
+        "link": "",
+        "entry": {
+          "isFree": null,
+          "fee": {
+            "amount": 0,
+            "currency": "N/A"
+          }
+        },
+        "prize": {
+          "isMonetary": null,
+          "amount": 0,
+          "currency": "N/A",
+          "description": "",
+          "evidence": {
+            "monetarySignals": [],
+            "nonMonetarySignals": []
+          }
+        },
+        "audience": {
+          "skillLevels": [
+            "intermediate"
+          ],
+          "primarySkillLevel": "intermediate",
+          "age": {
+            "min": null,
+            "max": null
+          },
+          "eligibilityLabel": "",
+          "eligibilityDetail": "",
+          "constraints": {
+            "participantType": [],
+            "academicStatus": null,
+            "graduationAfter": null,
+            "teamSize": {
+              "min": null,
+              "max": null
+            },
+            "organizationFoundedAfter": null
+          },
+          "location": "Worldwide",
+          "mode": "online"
+        },
+        "timeline": {
+          "startDateUTC": null,
+          "submissionDeadlineUTC": null,
+          "endISO": null,
+          "organizerTimeZone": null
+        },
+        "tags": [],
+        "filterKeys": {
+          "domain": "open-multidisciplinary",
+          "format": [],
+          "medium": [],
+          "themes": []
+        },
+        "engagement": null,
+        "lastVerifiedAt": null,
+        "_suggestedCategory": "Entrepreneurship",
+        "_categoryConfidence": "low"
+      }
+    ],
+    "generated_content": "",
+    "cost": {
+      "breakdown": {
+        "qwen/qwen3-8b": {
+          "calls": 2,
+          "input_tokens": 705,
+          "output_tokens": 1134,
+          "cost_usd": 0.000205
+        },
+        "qwen/qwen3-14b": {
+          "calls": 1,
+          "input_tokens": 4699,
+          "output_tokens": 868,
+          "cost_usd": 0.000412
+        }
+      },
+      "total_usd": 0.000617
+    },
+    "pages_visited": [
+      "https://www.womenincleantechsustainability.org/2026-women-led-startups-pitch-competition/"
+    ],
+    "pages_failed": []
+  },
+  "cached_at": "2026-04-12T21:52:38.345125"
+}

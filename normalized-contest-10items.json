@@ -1,0 +1,978 @@
+[
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "National League of American Pen Women, Inc.",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Writing",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "nlapw.org",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": "Writing"
+    },
+    "title": "2026 Biennial Letters Competition – National League of American Pen Women, Inc.",
+    "description": "The National League of American Pen Women invites entries in the 2026 Biennial Letters Competition, celebrating literary excellence in letter writing.",
+    "link": "https://www.nlapw.org/letters-competition/",
+    "entry": {
+      "isFree": null,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": null,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "",
+      "evidence": {
+        "monetarySignals": [],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "intermediate"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Women writers",
+      "eligibilityDetail": "Open to women writers of all ages and backgrounds.",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": null,
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "writing",
+      "literary",
+      "letters"
+    ],
+    "filterKeys": {
+      "domain": "writing",
+      "format": [
+        "text"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "literary-letters"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": null,
+    "source": {
+      "name": "National League of American Pen Women",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Writing",
+    "image": {
+      "primary": {
+        "url": "https://www.nlapw.org/wp-content/uploads/2023/09/2023-2024-Competition-Header-1.jpg",
+        "source": "external",
+        "status": "active"
+      },
+      "backup": null,
+      "original": {
+        "url": "https://www.nlapw.org/wp-content/uploads/2023/09/2023-2024-Competition-Header-1.jpg",
+        "domain": "nlapw.org",
+        "lastCheckedAt": null
+      },
+      "alt": "2023-2024 Competition Header",
+      "tag": "writing-competition"
+    },
+    "title": "Letters Competition",
+    "description": "Annual writing contest for literary works with cash prizes and recognition for outstanding entries.",
+    "link": "https://www.nlapw.org/letters-competition/",
+    "entry": {
+      "isFree": false,
+      "fee": {
+        "amount": 25,
+        "currency": "USD"
+      }
+    },
+    "prize": {
+      "isMonetary": true,
+      "amount": 1000,
+      "currency": "USD",
+      "description": "First prize of $1,000; additional awards for honorable mentions",
+      "evidence": {
+        "monetarySignals": [
+          "$1,000",
+          "$25 entry fee"
+        ],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Writers worldwide",
+      "eligibilityDetail": "Open to writers of all ages and experience levels; must submit original literary works",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": "2023-09-01T00:00:00Z",
+      "submissionDeadlineUTC": "2023-12-01T23:59:00Z",
+      "endISO": "2024-03-01T00:00:00Z",
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "literary",
+      "writing-contest",
+      "cash-prize"
+    ],
+    "filterKeys": {
+      "domain": "writing",
+      "format": [
+        "text"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "literary-competition"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "nlapw.org",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Entrepreneurship",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": ""
+    },
+    "title": "2026 Women-Led Startups Pitch Competition - Women in Cleantech & Sustainability",
+    "description": "",
+    "link": "https://www.womenincleantechsustainability.org/2026-women-led-startups-pitch-competition/",
+    "entry": {
+      "isFree": null,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": null,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "",
+      "evidence": {
+        "monetarySignals": [],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "intermediate"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Women-led startups",
+      "eligibilityDetail": "Open to women-led startups in cleantech and sustainability",
+      "constraints": {
+        "participantType": [
+          "startups"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": null,
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "cleantech",
+      "sustainability",
+      "startups",
+      "pitch-competition"
+    ],
+    "filterKeys": {
+      "domain": "entrepreneurship",
+      "format": [
+        "pitch"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "cleantech",
+        "sustainability"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "nlapw.org",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Entrepreneurship",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": ""
+    },
+    "title": "The Young Woman Engineer of the Year Awards",
+    "description": "",
+    "link": "https://youngwomenengineer.theiet.org/",
+    "entry": {
+      "isFree": null,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": null,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "",
+      "evidence": {
+        "monetarySignals": [],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "intermediate"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "",
+      "eligibilityDetail": "",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": null,
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [],
+    "filterKeys": {
+      "domain": "entrepreneurship",
+      "format": [],
+      "medium": [],
+      "themes": []
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "nlapw.org",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Writing",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "www.nlapw.org",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": "letters"
+    },
+    "title": "IEEE WIE Day | IEEE Women in Engineering",
+    "description": "IEEE WIE Day celebrates women in engineering through global events and initiatives.",
+    "link": "https://wie.ieee.org/membership/programs/ieee-wie-day/",
+    "entry": {
+      "isFree": true,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": null,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "",
+      "evidence": {
+        "monetarySignals": [],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "intermediate"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Women in engineering",
+      "eligibilityDetail": "Open to women in engineering fields globally.",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": null,
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "engineering",
+      "women",
+      "professional"
+    ],
+    "filterKeys": {
+      "domain": "writing",
+      "format": [
+        "text"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "gender-equality"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": null,
+    "source": {
+      "name": "fundsforngos.org",
+      "url": "https://www2.fundsforngos.org/innovation/entries-open-for-aakruti-innovation-competition-2026/",
+      "type": "aggregator"
+    },
+    "category": "Technology Innovation",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": ""
+    },
+    "title": "Entries open for AAKRUTI Innovation Competition 2026",
+    "description": "AAKRUTI Innovation Competition 2026 seeks innovative solutions for social impact through technology.",
+    "link": "https://www2.fundsforngos.org/innovation/entries-open-for-aakruti-innovation-competition-2026/",
+    "entry": {
+      "isFree": null,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": null,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "",
+      "evidence": {
+        "monetarySignals": [],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "intermediate"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Open to innovators",
+      "eligibilityDetail": "Open to individuals and organizations submitting innovative solutions for social impact.",
+      "constraints": {
+        "participantType": [
+          "individuals",
+          "companies"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": null,
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "technology",
+      "social-impact",
+      "innovation"
+    ],
+    "filterKeys": {
+      "domain": "technology-innovation",
+      "format": [
+        "text"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "social-impact"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "NLAPW",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Writing",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": "Writing"
+    },
+    "title": "Letters Competition | NLAPW",
+    "description": "Submit your creative writing to the NLAPW Letters Competition for a chance to win awards and recognition.",
+    "link": "https://www.nlapw.org/letters-competition/",
+    "entry": {
+      "isFree": true,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": true,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "Awards include cash prizes and recognition.",
+      "evidence": {
+        "monetarySignals": [
+          "cash prizes"
+        ],
+        "nonMonetarySignals": [
+          "recognition"
+        ]
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "intermediate"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": 18,
+        "max": null
+      },
+      "eligibilityLabel": "Writers aged 18+",
+      "eligibilityDetail": "Open to all writers who are at least 18 years old.",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": "2024-03-15T23:59:00Z",
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "creative writing",
+      "letters",
+      "competition"
+    ],
+    "filterKeys": {
+      "domain": "writing",
+      "format": [
+        "text"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "literary"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "NLAPW",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Writing",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": "Letters Competition"
+    },
+    "title": "Letters Competition for Women",
+    "description": "NLAPW's annual writing contest for women to submit creative letters and win prizes.",
+    "link": "https://www.nlapw.org/letters-competition/",
+    "entry": {
+      "isFree": true,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": true,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "Cash prizes and recognition for top entries",
+      "evidence": {
+        "monetarySignals": [
+          "prizes",
+          "cash"
+        ],
+        "nonMonetarySignals": [
+          "recognition"
+        ]
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "intermediate"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Women writers",
+      "eligibilityDetail": "Open to women of all ages and writing experience levels",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": null,
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "writing",
+      "competition",
+      "women",
+      "letters"
+    ],
+    "filterKeys": {
+      "domain": "writing",
+      "format": [
+        "text"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "writing",
+        "women"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "NLAPW",
+      "url": "https://www.nlapw.org/letters-competition/",
+      "type": "official"
+    },
+    "category": "Writing",
+    "image": {
+      "primary": {
+        "url": "https://www.nlapw.org/wp-content/uploads/2023/09/Letters-Competition-2023-1.jpg",
+        "source": "external",
+        "status": "active"
+      },
+      "backup": null,
+      "original": {
+        "url": "https://www.nlapw.org/wp-content/uploads/2023/09/Letters-Competition-2023-1.jpg",
+        "domain": "nlapw.org",
+        "lastCheckedAt": null
+      },
+      "alt": "Letters Competition 2023",
+      "tag": "writing"
+    },
+    "title": "Letters Competition",
+    "description": "Submit original letters to NLAPW's annual writing competition for a chance to win prizes and recognition.",
+    "link": "https://www.nlapw.org/letters-competition/",
+    "entry": {
+      "isFree": true,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": true,
+      "amount": 1000,
+      "currency": "USD",
+      "description": "Cash prizes for top entries",
+      "evidence": {
+        "monetarySignals": [
+          "$1000 cash prize",
+          "prizes"
+        ],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Women in Tech",
+      "eligibilityDetail": "Open to women in the technology field; must be a current member of NLAPW",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "Worldwide",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": "2024-01-01T00:00:00Z",
+      "submissionDeadlineUTC": "2024-04-30T23:59:59Z",
+      "endISO": "2024-06-30T00:00:00Z",
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "letters",
+      "writing",
+      "competition"
+    ],
+    "filterKeys": {
+      "domain": "writing",
+      "format": [
+        "text"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "literary-arts"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  },
+  {
+    "schemaVersion": "2.0",
+    "externalId": "women",
+    "source": {
+      "name": "California State University Long Beach",
+      "url": "https://www.csulb.edu/hung-family-college-of-engineering/event/2026-beach-women-engineering-conference",
+      "type": "official"
+    },
+    "category": "Technology Innovation",
+    "image": {
+      "primary": {
+        "url": "",
+        "source": "external",
+        "status": "not_found"
+      },
+      "backup": null,
+      "original": {
+        "url": "",
+        "domain": "",
+        "lastCheckedAt": null
+      },
+      "alt": "",
+      "tag": "Women in Engineering"
+    },
+    "title": "2026 BEACH Women in Engineering Conference | California State University Long Beach",
+    "description": "The 2026 BEACH Women in Engineering Conference at California State University Long Beach promotes women in engineering through networking and professional development.",
+    "link": "https://www.csulb.edu/hung-family-college-of-engineering/event/2026-beach-women-engineering-conference",
+    "entry": {
+      "isFree": null,
+      "fee": {
+        "amount": 0,
+        "currency": "N/A"
+      }
+    },
+    "prize": {
+      "isMonetary": null,
+      "amount": 0,
+      "currency": "N/A",
+      "description": "",
+      "evidence": {
+        "monetarySignals": [],
+        "nonMonetarySignals": []
+      }
+    },
+    "audience": {
+      "skillLevels": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ],
+      "primarySkillLevel": "intermediate",
+      "age": {
+        "min": null,
+        "max": null
+      },
+      "eligibilityLabel": "Women in Engineering",
+      "eligibilityDetail": "Open to women in engineering fields",
+      "constraints": {
+        "participantType": [
+          "individuals"
+        ],
+        "academicStatus": null,
+        "graduationAfter": null,
+        "teamSize": {
+          "min": null,
+          "max": null
+        },
+        "organizationFoundedAfter": null
+      },
+      "location": "California State University Long Beach",
+      "mode": "online"
+    },
+    "timeline": {
+      "startDateUTC": null,
+      "submissionDeadlineUTC": null,
+      "endISO": null,
+      "organizerTimeZone": "UTC"
+    },
+    "tags": [
+      "women-engineering",
+      "conference",
+      "professional-development"
+    ],
+    "filterKeys": {
+      "domain": "technology-innovation",
+      "format": [
+        "event"
+      ],
+      "medium": [
+        "digital"
+      ],
+      "themes": [
+        "women-in-engineering"
+      ]
+    },
+    "engagement": null,
+    "lastVerifiedAt": null
+  }
+]

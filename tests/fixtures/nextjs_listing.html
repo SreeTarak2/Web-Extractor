@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Next.js Shop</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "Camera Pro 4K",
+        "image": "https://cdn.example.com/camera-pro-4k.jpg",
+        "offers": {"@type": "Offer", "price": "599.00", "priceCurrency": "USD"}
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="__next">
+    <main>
+      <div class="product-grid">
+        <article class="product-item">
+          <a href="/products/camera-pro-4k">
+            <picture>
+              <source srcset="/_next/image?url=%2Fimages%2Fcamera-pro-4k.jpg&w=640&q=75 640w" sizes="(max-width: 640px) 100vw, 640px">
+              <img src="/_next/image?url=%2Fimages%2Fcamera-pro-4k.jpg&w=640&q=75" alt="Camera Pro 4K" data-nimg="1">
+            </picture>
+            <h2 class="product-name">Camera Pro 4K</h2>
+            <p class="product-price">$599.00</p>
+          </a>
+        </article>
+      </div>
+      <nav aria-label="Pagination">
+        <a href="/products?page=2" rel="next">Next</a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

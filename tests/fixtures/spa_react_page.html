@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>React SPA</title></head>
+<body>
+  <div id="root">
+    <!-- Content rendered by React after JS executes -->
+    <div class="app-container">
+      <div class="product-listing">
+        <div class="product-card" data-id="123">
+          <img
+            src="https://images.spa-shop.com/products/sneaker-air.jpg"
+            data-src="https://images.spa-shop.com/products/sneaker-air-full.jpg"
+            class="product-image"
+            alt="Sneaker Air"
+          >
+          <div class="product-info">
+            <a href="/product/sneaker-air" class="product-name">Sneaker Air Max</a>
+            <div class="product-price-container">
+              <span class="product-price">$129.95</span>
+              <span class="product-original-price">$159.95</span>
+            </div>
+            <div class="product-rating">
+              <span class="stars">★★★★☆</span>
+              <span class="review-count">(89 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/static/js/main.chunk.js"></script>
+  <script src="/static/js/bundle.js"></script>
+</body>
+</html>
