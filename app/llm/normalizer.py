@@ -10,6 +10,7 @@ import os
 import asyncio
 import json
 import logging
+from datetime import datetime, timezone
 
 from app.llm.client import get_client
 from app.llm.prompts import NORMALIZER_CONTEST_SYSTEM, NORMALIZER_CONFERENCE_SYSTEM
@@ -136,6 +137,22 @@ async def normalize(
                     f"Item {idx + 1} category confidence={confidence!r}, "
                     f"suggested={suggested!r}, assigned={normalized.get('category')!r}"
                 )
+
+            # Stamp lastVerifiedAt with current UTC time (never leave as null)
+            normalized["lastVerifiedAt"] = datetime.now(timezone.utc).strftime(
+                "%Y-%m-%dT%H:%M:%S"
+            )
+
+            # Safety net: if LLM left image URL null, inject from pre-extracted data
+            primary = normalized.get("image", {}).get("primary", {})
+            if not primary.get("url") and banner_url:
+                normalized.setdefault("image", {}).setdefault("primary", {})["url"] = banner_url
+                normalized["image"]["primary"].setdefault("source", "external")
+                normalized["image"]["primary"].setdefault("status", "active")
+
+            # Safety net: derive alt text from title if still empty
+            if not normalized.get("image", {}).get("alt") and normalized.get("title"):
+                normalized.setdefault("image", {})["alt"] = normalized["title"]
 
             logger.info(f"Normalized item {idx + 1}/{len(items)} ({mode})")
             return normalized
