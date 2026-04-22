@@ -125,16 +125,15 @@ FINAL SCHEMA (STRICT)
 TYPE RULES (STRICT)
 ==================================================
 Choose EXACTLY ONE from this list:
-"contest" | "hackathon" | "grant" | "fellowship" | "award" | "challenge"
+"contest" | "hackathon" | "conference"
 
 Rules:
-- "contest" → open competition with judged submissions
-- "hackathon" → time-boxed collaborative build event
-- "grant" → funding awarded without competitive judging
-- "fellowship" → paid program with mentorship/residency component
-- "award" → recognition prize, typically nominated not applied
-- "challenge" → problem-solving competition, often tech-focused
+- "contest"    → any open competition, challenge, award, grant, or fellowship
+                  where participants submit work to be judged or evaluated
+- "hackathon"  → time-boxed collaborative build/coding event (hours to days)
+- "conference" → academic or professional gathering; call for papers/speakers
 - Default to "contest" if unclear
+- NEVER output any other value
 
 ==================================================
 FLAGS RULES (STRICT)
